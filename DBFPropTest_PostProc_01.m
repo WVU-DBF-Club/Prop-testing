@@ -140,3 +140,20 @@ if prsw == 1
         print([rootpath '\' sprintf('fig_%02d.jpg',i)],'-djpeg','-r300');
     end
 end
+
+%% Brandon's addition
+for n=1:length(T_lbf)
+    T_lbf_raw=T_lbf{1,n};
+    ind_nan=find(isnan(T_lbf_raw));
+    T_lbf_raw(ind_nan)=[];
+    T_lbf_proc{1,n}=T_lbf_raw;
+    i_A_raw=i_A{1,n};
+    i_A_raw(ind_nan)=[];
+    i_A_proc{1,n}=i_A_raw;
+end
+hold on
+xlabel('Amps')
+ylabel('Thrust')
+title("T vs A for 18x12 and o ft/s")
+plot(i_A_proc{1,1},T_lbf_proc{1,1})
+hold off
